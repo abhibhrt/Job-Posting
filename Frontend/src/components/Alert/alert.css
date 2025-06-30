@@ -1,0 +1,132 @@
+:root {
+    --alert-success: #4CAF50;
+    --alert-info: #2196F3;
+    --alert-warning: #FF9800;
+    --alert-error: #F44336;
+    --alert-text: #fff;
+    --alert-bg: #333;
+    --alert-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .alert-container {
+    position: fixed;
+    top: 80px;
+    right: -400px;
+    min-width: 300px;
+    max-width: 350px;
+    padding: 15px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: var(--alert-shadow);
+    color: var(--alert-text);
+    background: var(--alert-bg);
+    transform: translateX(0);
+    opacity: 0;
+    transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+  
+  .alert-container.visible {
+    opacity: 1;
+    transform: translateX(0);
+    animation: sliderap 3s ease-in;
+  }
+
+  @keyframes sliderap {
+    0%{
+      right: -200px;
+    }
+    5%{
+      right: 20px;
+    }
+    100%{
+      right: 20px;
+    }
+  }
+  
+  .alert-success {
+    border-left: 4px solid var(--alert-success);
+    background-color: #004502ca;
+  }
+  
+  .alert-info {
+    border-left: 4px solid var(--alert-info);
+    background-color: #002b4ed4;
+  }
+  
+  .alert-warning {
+    border-left: 4px solid var(--alert-warning);
+    background-color: #533201c0;
+  }
+  
+  .alert-error {
+    border-left: 4px solid var(--alert-error);
+    background-color: #4c0500c4;
+  }
+  
+  .alert-icon {
+    font-size: 24px;
+    margin-right: 15px;
+    font-weight: bold;
+  }
+  
+  .alert-success .alert-icon {
+    color: var(--alert-success);
+  }
+  
+  .alert-info .alert-icon {
+    color: var(--alert-info);
+  }
+  
+  .alert-warning .alert-icon {
+    color: var(--alert-warning);
+  }
+  
+  .alert-error .alert-icon {
+    color: var(--alert-error);
+  }
+  
+  .alert-content {
+    flex: 1;
+  }
+  
+  .alert-message {
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+  
+  .alert-progress {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  
+  .alert-progress-bar {
+    height: 100%;
+    background: rgba(255, 255, 255, 0.7);
+    width: 100%;
+    animation: progressBar linear forwards;
+  }
+  
+  @keyframes progressBar {
+    0% { width: 100%; }
+    100% { width: 0%; }
+  }
+  
+  .alert-close {
+    background: transparent;
+    border: none;
+    color: var(--alert-text);
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 10px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+    padding: 0 0 0 10px;
+  }
+  
+  .alert-close:hover {
+    opacity: 1;
+  }

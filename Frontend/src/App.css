@@ -1,0 +1,57 @@
+:root{
+  --color-bg: #121212;             /* Main background */
+  --color-surface: #1e1e1e;        /* Cards/sections background */
+  --color-text-primary: #f5f5f5;   /* Main text */
+  --color-text-secondary: #b0b0b0; /* Muted/secondary text */
+  --color-primary: #63a4ff;        /* Primary button, links, accents */
+  --color-secondary: #6fcf97;      /* Secondary color (success) */
+  --color-primary-hover: #4b90e2;  /* Hover effect for primary */
+  --color-accent: #f2b56b;         /* Accent elements */
+  --color-accent-hover: #e69d48;   /* Accent hover */
+  --color-border: #2a2a2a;         /* Border and dividers */
+}
+
+html{
+  scroll-behavior: smooth;
+}
+
+/* Global Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 50px;
+}
+
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+}
+
+.global-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: linear-gradient(90deg, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  width:max-content;
+}
+
+.secondglobal-heading {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 0;
+  background: var(--color-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 2rem;
+}
