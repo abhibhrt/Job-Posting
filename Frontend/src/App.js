@@ -11,6 +11,8 @@ import FeaturedJobs from './Main-Page/Featured/FeaturedJobs';
 import About from './Main-Page/About/About';
 import Services from './Main-Page/Services/Services';
 import Reviews from './components/Reviews/Reviews';
+import Contact from './components/Contact/Contact';
+import Companies from './components/Companies/Comapnies';
 
 // Lazy loaded components
 const Navbar = lazy(() => import('./Main-Page/Navbar/Navbar'));
@@ -56,6 +58,10 @@ function App() {
               <Route path="/jobs" element={<JobList />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/updates" element={<Updates />} />
+              <Route path="/reviews" element={<Reviews />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/companies" element={<Companies />} />
+              <Route path="/about" element={<About />} />
             </Routes>
             <Footer />
           </Suspense>

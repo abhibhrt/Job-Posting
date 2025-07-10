@@ -50,18 +50,18 @@ const Navbar = () => {
           <NavLink to="/jobs" className="navbar-link" onClick={handleNavClick}>
             <span>Jobs</span>
           </NavLink>
-          <a href="/#companies" className="navbar-link" onClick={handleNavClick}>
+          <NavLink to="/companies" className="navbar-link" onClick={handleNavClick}>
             <span>Companies</span>
-          </a>
-          <NavLink to="/services" className="navbar-link" onClick={handleNavClick}>
-            <span>Services</span>
+          </NavLink>
+          <NavLink to="/updates" className="navbar-link" onClick={handleNavClick}>
+            <span>Updates</span>
           </NavLink>
           <NavLink to="/reviews" className="navbar-link" onClick={handleNavClick}>
             <span>Reviews</span>
           </NavLink>
-          <a href="/#about-section" className="navbar-link" onClick={handleNavClick}>
+          <NavLink to="/about" className="navbar-link" onClick={handleNavClick}>
             <span>About Us</span>
-          </a>
+          </NavLink>
           <NavLink to="/contact" className="navbar-link" onClick={handleNavClick}>
             <span>Contact Us</span>
           </NavLink>
@@ -70,7 +70,7 @@ const Navbar = () => {
           <input
             type="checkbox"
             checked={theme === 'dark'}
-            onChange={toggleTheme}/>
+            onChange={toggleTheme} />
           <span className="toggle-slider"></span>
         </label>
         <div
