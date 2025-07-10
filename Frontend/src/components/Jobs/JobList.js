@@ -1,19 +1,49 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { useGlobalData } from '../../GlobalDataContext';
 import './jobcards.css';
 import ApplyForm from '../Forms/ApplyForm';
 import JobPopup from '../JobPopup/JobPopup';
 
 const JobList = () => {
-  const { jobs } = useGlobalData();
+  const { jobs, loading, error } = useGlobalData();
   const [filteredJobs, setFilteredJobs] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showApplyModal, setShowApplyModal] = useState(false);
   const [selectedJobId, setSelectedJobId] = useState(null);
-  const [selectedJobForDetails, setSelectedJobForDetails] = useState(null); // 👈 this replaces showDetails
+  const [selectedJobForDetails, setSelectedJobForDetails] = useState(null);
+
 
   useEffect(() => {
-    setFilteredJobs(jobs);
+    const timeout = setTimeout(() => {
+      if (!Array.isArray(jobs)) {
+        setFilteredJobs([]);
+        return;
+      }
+
+      const query = searchQuery.toLowerCase();
+      if (query.trim() === '') {
+        setFilteredJobs(jobs);
+        return;
+      }
+
+      const filtered = jobs.filter((job) =>
+        job.companyName?.toLowerCase().includes(query) ||
+        job.salary?.toLowerCase().includes(query) ||
+        job.location?.toLowerCase().includes(query) ||
+        job.description?.toLowerCase().includes(query) ||
+        job.jobType?.toLowerCase().includes(query) ||
+        job.workingHours?.toLowerCase().includes(query)
+      );
+
+      setFilteredJobs(filtered);
+    }, 300); // debounce 300ms
+
+    return () => clearTimeout(timeout);
+  }, [searchQuery, jobs]);
+
+  // 🧠 On mount or job update (initial display)
+  useEffect(() => {
+    if (Array.isArray(jobs)) setFilteredJobs(jobs);
   }, [jobs]);
 
   const handleApplyClick = (jobId) => {
@@ -22,19 +52,7 @@ const JobList = () => {
   };
 
   const handleSearch = (e) => {
-    const query = e.target.value.toLowerCase();
-    setSearchQuery(query);
-
-    const filtered = jobs.filter((job) =>
-      job.companyName?.toLowerCase().includes(query) ||
-      job.salary?.toLowerCase().includes(query) ||
-      job.location?.toLowerCase().includes(query) ||
-      job.description?.toLowerCase().includes(query) ||
-      job.jobType?.toLowerCase().includes(query) ||
-      job.workingHours?.toLowerCase().includes(query)
-    );
-
-    setFilteredJobs(filtered);
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -51,13 +69,17 @@ const JobList = () => {
       </div>
 
       <div className="jobcards-container">
-        {filteredJobs.length === 0 ? (
+        {loading ? (
+          <p className="status-message">Loading jobs...</p>
+        ) : error ? (
+          <p className="status-message error">Failed to load jobs. Please try again later.</p>
+        ) : filteredJobs.length === 0 ? (
           <p className="no-jobs">No matching jobs found.</p>
         ) : (
           filteredJobs.map((job) => (
             <div className="jobcard" key={job._id}>
               <div className="jobcard-header">
-                <img src={job.logo || "https://via.placeholder.com/50"} alt="Company Logo" />
+                <img src={job.logo || 'https://via.placeholder.com/50'} alt="Company Logo" />
                 <div>
                   <h3>{job.companyName}</h3>
                   <span>{job.jobType}</span>

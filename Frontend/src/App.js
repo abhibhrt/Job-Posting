@@ -6,12 +6,16 @@ import { useEffect } from 'react';
 
 // Context
 import { GlobalDataProvider } from './GlobalDataContext';
+import Scroller from './Main-Page/Scoller/Scroller';
+import FeaturedJobs from './Main-Page/Featured/FeaturedJobs';
+import About from './Main-Page/About/About';
+import Services from './Main-Page/Services/Services';
+import Reviews from './components/Reviews/Reviews';
 
 // Lazy loaded components
-const Navbar = lazy(() => import('./components/Navbar/Navbar'));
+const Navbar = lazy(() => import('./Main-Page/Navbar/Navbar'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
-const Home = lazy(() => import('./components/Home/Home'));
-const FeaturedJobs = lazy(() => import('./components/Featured/FeaturedJobs'));
+const Home = lazy(() => import('./Main-Page/Home/Home'));
 const JobList = lazy(() => import('./components/Jobs/JobList'));
 const Admin = lazy(() => import('./components/Admin/Admin'));
 const Updates = lazy(() => import('./components/Updates/Updates'));
@@ -26,6 +30,19 @@ function ScrollToTop() {
   return null;
 }
 
+function MainSection(){
+  return (
+    <>
+      <Home/>
+      <About />
+      <Scroller/>
+      <FeaturedJobs/>
+      <Services/>
+      <Reviews/>
+    </>
+  )
+}
+
 function App() {
   return (
     <GlobalDataProvider>
@@ -35,8 +52,7 @@ function App() {
             <Navbar />
             <ScrollToTop />
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/featured" element={<FeaturedJobs />} />
+              <Route path="/" element={<MainSection />} />
               <Route path="/jobs" element={<JobList />} />
               <Route path="/admin" element={<Admin />} />
               <Route path="/updates" element={<Updates />} />

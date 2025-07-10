@@ -181,6 +181,13 @@
   }
   
   @media (max-width: 600px) {
+
+    .job-popup-container{
+      border-radius: 0;
+      height: 98vh;
+      padding: 1vh 1rem;
+    }
+
     .job-details-grid {
       grid-template-columns: 1fr;
     }

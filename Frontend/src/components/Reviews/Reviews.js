@@ -6,7 +6,7 @@ import './reviews.css';
 const Reviews = () => {
   const { reviews, loading, refetch } = useGlobalData();
   const { showAlert, AlertComponent } = useAlert();
-  const [form, setForm] = useState({ name: '', email: '', rating: 5, review: '' });
+  const [form, setForm] = useState({ name: '', email: '', rating: 0, review: '' });
   const [hoverRating, setHoverRating] = useState(0);
   const [submitted, setSubmitted] = useState(false);
 

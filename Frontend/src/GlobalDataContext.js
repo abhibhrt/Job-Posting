@@ -1,28 +1,48 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  useCallback
+} from 'react';
 import { useAlert } from './components/Alert/Alert';
+
 const GlobalDataContext = createContext();
 
-// Utility: Fetch with Timeout
-const fetchWithTimeout = async (resource, options = {}, timeout = 15000) => {
-  const controller = new AbortController();
-  const id = setTimeout(() => controller.abort(), timeout);
+const fetchWithTimeout = async (resource, options = {}, timeout = 15000, retries = 2) => {
+  let attempt = 0;
 
-  try {
-    const response = await fetch(resource, {
-      ...options,
-      signal: controller.signal
-    });
+  while (attempt <= retries) {
+    const controller = new AbortController();
+    const id = setTimeout(() => controller.abort(), timeout);
 
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    return await response.json();
-  } finally {
-    clearTimeout(id);
+    try {
+      const response = await fetch(resource, {
+        ...options,
+        signal: controller.signal
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      return await response.json();
+    } catch (err) {
+      if (attempt === retries) throw err;
+
+      const delay = Math.pow(2, attempt) * 500; // exponential backoff
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      attempt++;
+    } finally {
+      clearTimeout(id);
+    }
   }
 };
 
 export const GlobalDataProvider = ({ children }) => {
   const apiUrl = process.env.REACT_APP_API_URL;
   const { showAlert, AlertComponent } = useAlert();
+
   const [jobs, setJobs] = useState([]);
   const [candidates, setCandidates] = useState([]);
   const [reviews, setReviews] = useState([]);
@@ -34,10 +54,10 @@ export const GlobalDataProvider = ({ children }) => {
 
   const fetchInitialData = useCallback(async () => {
     const startTime = Date.now();
-    try {
-      setLoading(true);
-      setError(null);
+    setLoading(true);
+    setError(null);
 
+    try {
       const [jobsRes, candidatesRes, reviewsRes, updatesRes] = await Promise.all([
         fetchWithTimeout(`${apiUrl}/jobs`),
         fetchWithTimeout(`${apiUrl}/candidates/applications`),
@@ -51,9 +71,9 @@ export const GlobalDataProvider = ({ children }) => {
       setUpdates(updatesRes);
     } catch (err) {
       if (err.name === 'AbortError') {
-        showAlert("Request timed out", 'error');
+        showAlert('Request timed out. Please try again.', 'error');
       } else {
-        showAlert("Failed to fetch data", 'error');
+        showAlert('Failed to fetch data from server.', 'error');
       }
       setError('Something went wrong while loading global data.');
     } finally {
@@ -81,7 +101,7 @@ export const GlobalDataProvider = ({ children }) => {
     >
       {loading && (
         <div className="loading-container">
-          <span className="loader"></span>
+          <span className="loader" />
         </div>
       )}
       <AlertComponent />

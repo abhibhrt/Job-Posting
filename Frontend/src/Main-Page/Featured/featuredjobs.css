@@ -1,0 +1,214 @@
+/* Featured Jobs Section */
+.featured-wrapper {
+  background-color: var(--color-bg);
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.featured-see-all {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 5px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.featured-see-all:hover {
+  background-color: rgba(99, 164, 255, 0.1);
+  transform: translateX(5px);
+}
+
+.status-message {
+  text-align: center;
+  color: var(--color-text-secondary);
+  font-size: 1.1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 0;
+}
+
+.status-message.error {
+  color: var(--color-accent);
+}
+
+.featured-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.featured-card {
+  background-color: var(--color-surface);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s ease;
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.featured-card:nth-child(1) { animation-delay: 0.1s; }
+.featured-card:nth-child(2) { animation-delay: 0.2s; }
+.featured-card:nth-child(3) { animation-delay: 0.3s; }
+
+.featured-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--color-border);
+  gap: 1rem;
+}
+
+.company-logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 8px;
+  background-color: white;
+  padding: 5px;
+}
+
+.job-info {
+  flex: 1;
+}
+
+.company-name {
+  color: var(--color-text-primary);
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.job-type {
+  color: var(--color-text-secondary);
+  font-size: 0.85rem;
+  display: block;
+  margin-top: 0.3rem;
+}
+
+.card-body {
+  padding: 1.5rem;
+}
+
+.job-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+}
+
+.icon {
+  color: var(--color-primary);
+  font-size: 0.9rem;
+}
+
+.description {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin-top: 1rem;
+}
+
+.card-actions {
+  display: flex;
+  padding: 0 1.5rem 1.5rem;
+  gap: 1rem;
+}
+
+.btn {
+  flex: 1;
+  padding: 0.8rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  font-size: 0.9rem;
+}
+
+.btn.apply {
+  background-color: var(--color-primary);
+  color: var(--color-text-primary);
+}
+
+.btn.apply:hover {
+  background-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(99, 164, 255, 0.3);
+}
+
+.btn.details {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1px solid var(--color-primary);
+}
+
+.btn.details:hover {
+  background-color: rgba(99, 164, 255, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  
+  .featured-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .featured-card {
+    width: 100%;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 480px) {
+  .featured-header {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .card-actions {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+  
+  .btn {
+    width: 100%;
+  }
+}
