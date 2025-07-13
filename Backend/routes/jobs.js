@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Job = require('../models/Job');
+const toSubscribers = require('../config/mailer');
 
 // Create a job
 router.post('/', async (req, res) => {
   const job = new Job(req.body);
   await job.save();
+  await toSubscribers(req.body);
   res.status(201).json(job);
 });
 

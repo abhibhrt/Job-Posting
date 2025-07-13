@@ -19,6 +19,8 @@ app.use('/jobs', require('./routes/jobs'));
 app.use('/candidates', require('./routes/candidates'));
 app.use('/reviews', require('./routes/reviews'));
 app.use('/updates', require('./routes/updates'));
+app.use('/subscribe', require('./routes/subscribe'));
+
  
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -26,5 +28,4 @@ app.use((err, req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
-app.listen(5000, '0.0.0.0', () => console.log(`Server running on port 5000`));
-// app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+app.listen(PORT, '0.0.0.0', () => console.log(`Server running on port ${PORT}`));

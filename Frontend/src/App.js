@@ -6,21 +6,21 @@ import { useEffect } from 'react';
 
 // Context
 import { GlobalDataProvider } from './GlobalDataContext';
-import Scroller from './Main-Page/Scoller/Scroller';
-import FeaturedJobs from './Main-Page/Featured/FeaturedJobs';
-import About from './Main-Page/About/About';
-import Services from './Main-Page/Services/Services';
-import Reviews from './components/Reviews/Reviews';
-import Contact from './components/Contact/Contact';
-import Companies from './components/Companies/Comapnies';
+import Scroller from './components/Scoller/Scroller';
+import FeaturedJobs from './Pages/Featured/FeaturedJobs';
+import About from './Pages/About/About';
+import Services from './Pages/Services/Services';
+import Reviews from './Pages/Reviews/Reviews';
+import Contact from './Pages/Contact/Contact';
+import Companies from './Pages/Companies/Comapnies';
 
 // Lazy loaded components
-const Navbar = lazy(() => import('./Main-Page/Navbar/Navbar'));
+const Navbar = lazy(() => import('./components/Navbar/Navbar'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
-const Home = lazy(() => import('./Main-Page/Home/Home'));
-const JobList = lazy(() => import('./components/Jobs/JobList'));
-const Admin = lazy(() => import('./components/Admin/Admin'));
-const Updates = lazy(() => import('./components/Updates/Updates'));
+const Home = lazy(() => import('./Pages/Home/Home'));
+const JobList = lazy(() => import('./Pages/Jobs/JobList'));
+const Admin = lazy(() => import('./Admin/Admin'));
+const Updates = lazy(() => import('./Pages/Updates/Updates'));
 
 function ScrollToTop() {
   const { pathname } = useLocation();

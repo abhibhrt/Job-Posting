@@ -1,0 +1,118 @@
+.about-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.about-content {
+  flex: 1;
+}
+
+.about-title {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-primary);
+}
+
+.about-text {
+  margin: 0.5rem 0;
+  font-size: .886rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-top: 3rem;
+}
+
+.about-stat {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 1.5rem;
+  transition: transform 0.3s ease;
+  width: 100px;
+}
+
+.about-stat:hover {
+  transform: translateY(-5px);
+}
+
+.about-stat-number {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-accent);
+  margin-bottom: 0.5rem;
+}
+
+.about-stat-label {
+  font-size: 1.1rem;
+  color: var(--color-text-primary);
+  margin-bottom: 0.25rem;
+}
+
+.about-stat-sublabel {
+  font-size: 0.9rem;
+  color: var(--color-text-secondary);
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.about-image>img {
+  width: 350px;
+}
+
+@media (min-width: 768px) {
+  .about-container {
+    flex-direction: row;
+  }
+  
+  .about-stats {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-stats {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  
+  .about-image>img {
+   width:400px;
+  }
+
+  .about-text{
+    font-size: 1.1rem;
+  }
+}
+
+@keyframes countUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.about-stat {
+  animation: countUp 0.5s ease forwards;
+}
+
+.about-stat:nth-child(1) { animation-delay: 0.1s; }
+.about-stat:nth-child(2) { animation-delay: 0.2s; }
+.about-stat:nth-child(3) { animation-delay: 0.3s; }
+.about-stat:nth-child(4) { animation-delay: 0.4s; }
+.about-stat:nth-child(5) { animation-delay: 0.5s; }
