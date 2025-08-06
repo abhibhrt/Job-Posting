@@ -1,9 +1,18 @@
 const express = require('express');
+const rateLimit = require('express-rate-limit');
 const router = express.Router();
 const Review = require('../models/Review');
 
+// Rate limiter: 1 request per 24 hours per IP
+const reviewLimiter = rateLimit({
+  windowMs: 24 * 60 * 60 * 1000, // 24 hours
+  max: 1, // limit each IP to 1 review per 24 hours
+  message: { message: "You've Already Submitted One" },
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
-router.post('/', async (req, res) => {
+router.post('/', reviewLimiter, async (req, res) => {
   try {
     const reviews = new Review(req.body);
     await reviews.save();
@@ -12,7 +21,6 @@ router.post('/', async (req, res) => {
     res.status(500).json({ message: 'Failed to submit review', error });
   }
 });
-
 
 router.get('/', async (req, res) => {
   try {

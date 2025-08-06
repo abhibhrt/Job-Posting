@@ -18,6 +18,14 @@
     radial-gradient(circle at 90% 80%, rgba(111, 207, 151, 0.05) 0%, transparent 20%);
 }
 
+.update-password-btn{
+  color: rgb(0, 81, 168);
+  cursor: pointer;
+}
+.update-password-btn:hover{
+  color: rgb(55, 0, 128);
+}
+
 .admin-panel__login-card {
   background-color: var(--color-surface);
   border-radius: 12px;
@@ -109,7 +117,7 @@
   box-shadow: 0 0 0 2px rgba(99, 164, 255, 0.2);
 }
 
-.admin-panel__error-message {
+.admin-panel__error-message, .admin-panel__success-message {
   color: #ff6b6b;
   background-color: rgba(255, 107, 107, 0.1);
   padding: 0.75rem;
@@ -118,6 +126,11 @@
   text-align: center;
   animation: admin-panel__shake 0.4s ease;
 }
+.admin-panel__success-message{
+  color: rgb(80, 255, 80);
+  background-color: rgba(0, 67, 0, 0.26);
+}
+
 
 @keyframes admin-panel__shake {
 

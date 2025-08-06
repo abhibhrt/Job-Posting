@@ -152,13 +152,13 @@
 .review-list {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  /* gap: 1.5rem; */
 }
 
 .review-card {
   background-color: var(--color-surface);
   padding: 1.5rem;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
   animation: fadeIn 0.5s ease-out forwards;
   opacity: 0;

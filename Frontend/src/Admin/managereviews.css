@@ -193,7 +193,7 @@
   font-size: 0.95rem;
   line-height: 1.5;
   color: var(--color-text-primary);
-  white-space: nowrap;
+  white-space: wrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }

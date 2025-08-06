@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const cors = require('cors');
 require('dotenv').config();
+const Admin = require('./models/Admin');
 
 const app = express();
 connectDB();
@@ -20,6 +21,14 @@ app.use('/candidates', require('./routes/candidates'));
 app.use('/reviews', require('./routes/reviews'));
 app.use('/updates', require('./routes/updates'));
 app.use('/subscribe', require('./routes/subscribe'));
+
+(async () => {
+  const adminCount = await Admin.countDocuments();
+  if (adminCount === 0) {
+    await Admin.create({ username: 'hrzone', password: 'Admin@123' });
+    console.log('Default admin created: hrzone / Admin@123');
+  }
+})();
 
  
 app.use((err, req, res, next) => {

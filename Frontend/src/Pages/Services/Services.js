@@ -23,19 +23,19 @@ const Services = () => {
 
         <div className="services-features">
           <div className="service-feature">
-            <div className="feature-checkbox checked"></div>
+            <div className="feature-checkbox checked">&#9996;</div>
             <div className="feature-text">Explore Verified Job Opportunities</div>
           </div>
           <div className="service-feature">
-            <div className="feature-checkbox checked"></div>
+            <div className="feature-checkbox checked">&#9996;</div>
             <div className="feature-text">Personalized Profile Matching</div>
           </div>
           <div className="service-feature">
-            <div className="feature-checkbox checked"></div>
+            <div className="feature-checkbox checked">&#9996;</div>
             <div className="feature-text">Connect with Experts</div>
           </div>
           <div className="service-feature">
-            <div className="feature-checkbox checked"></div>
+            <div className="feature-checkbox checked">&#9996;</div>
             <div className="feature-text">Stay in Touch</div>
           </div>
         </div>

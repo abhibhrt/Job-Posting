@@ -24,8 +24,8 @@ const Footer = () => {
 
                 <div className="footer-contact">
                     <h4>Contact Us</h4>
-                    <p><FaEnvelope /> hrzone@example.com</p>
-                    <p><FaPhone /> +91 9876543210</p>
+                    <p><FaEnvelope /> hrzone2203@gmail.com</p>
+                    <p><FaPhone /> +91 9893468837</p>
                     <div className="footer-socials">
                         <a href="/"><FaFacebook /></a>
                         <a href="/"><FaInstagram /></a>

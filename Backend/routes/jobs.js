@@ -5,10 +5,23 @@ const toSubscribers = require('../config/mailer');
 
 // Create a job
 router.post('/', async (req, res) => {
-  const job = new Job(req.body);
-  await job.save();
-  await toSubscribers(req.body);
-  res.status(201).json(job);
+  try {
+    const job = new Job(req.body);
+    await job.save();
+
+    // Respond immediately
+    res.status(201).json({ message: 'Job created successfully', job });
+
+    // Run mailing asynchronously
+    setImmediate(() => {
+      toSubscribers(req.body)
+        .then(() => console.log('Emails sent to subscribers'))
+        .catch((err) => console.error('Error sending emails:', err));
+    });
+
+  } catch (err) {
+    res.status(500).json({ message: 'Error creating job', error: err });
+  }
 });
 
 // Get all jobs
