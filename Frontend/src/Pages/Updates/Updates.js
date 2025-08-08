@@ -19,9 +19,9 @@ const Updates = () => {
 
   const filteredUpdates = selectedDate
     ? updates.filter(update => {
-        const updateDate = new Date(update.createdAt).toISOString().split('T')[0];
-        return updateDate === selectedDate;
-      })
+      const updateDate = new Date(update.createdAt).toISOString().split('T')[0];
+      return updateDate === selectedDate;
+    })
     : [];
 
   const renderCalendar = () => {
@@ -63,7 +63,7 @@ const Updates = () => {
   const changeMonth = (increment) => {
     let newMonth = currentMonth + increment;
     let newYear = currentYear;
-    
+
     if (newMonth < 0) {
       newMonth = 11;
       newYear--;
@@ -71,14 +71,14 @@ const Updates = () => {
       newMonth = 0;
       newYear++;
     }
-    
+
     setCurrentMonth(newMonth);
     setCurrentYear(newYear);
     setSelectedDate(null);
   };
 
-  const monthNames = ["January", "February", "March", "April", "May", "June", 
-                     "July", "August", "September", "October", "November", "December"];
+  const monthNames = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
 
   return (
     <div id="updates-section" className='page-section'>
@@ -86,38 +86,41 @@ const Updates = () => {
       <div className="updates-content">
         <div className="updates-list-section">
           <h2 className="section-title">
-            {selectedDate 
-              ? `Updates for ${new Date(selectedDate).toLocaleDateString('en-US', { 
-                  month: 'long', 
-                  day: 'numeric', 
-                  year: 'numeric' 
-                })}`
+            {selectedDate
+              ? `Updates for ${new Date(selectedDate).toLocaleDateString('en-US', {
+                month: 'long',
+                day: 'numeric',
+                year: 'numeric'
+              })}`
               : 'Select a date to view updates'}
           </h2>
-          
+
           {loading && <div className="loading-spinner"></div>}
-          
+
           <div className="updates-list">
             {filteredUpdates.length > 0 ? (
               filteredUpdates.map(update => (
-                <div key={update._id} className="updates-card">
-                  <div className="update-time">
-                    {new Date(update.createdAt).toLocaleTimeString([], { 
-                      hour: '2-digit', 
-                      minute: '2-digit' 
-                    })}
+                <div key={update._id} className="updates-card-cont">
+                  <img src={update.images.url} alt="update-image" className='update-image' />
+                  <div className="updates-card">
+                    <div className="update-time">
+                      {new Date(update.createdAt).toLocaleTimeString([], {
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </div>
+                    <pre className="updates-message">{update.message}</pre>
                   </div>
-                  <pre className="updates-message">{update.message}</pre>
                 </div>
               ))
             ) : (
               <div className="no-updates">
-                {selectedDate 
-                  ? "No updates available for this date" 
+                {selectedDate
+                  ? "No updates available for this date"
                   : <div className="select-date-prompt">
-                      <div className="calendar-icon">📅</div>
-                      <p>Select a date from the calendar to view updates</p>
-                    </div>}
+                    <div className="calendar-icon">📅</div>
+                    <p>Select a date from the calendar to view updates</p>
+                  </div>}
               </div>
             )}
           </div>

@@ -1,10 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Update = require('../models/Update');
-
-// Temporary fallback middleware if not imported
-const authenticate = (req, res, next) => { next(); };
-const isAdmin = (req, res, next) => { next(); };
+const handleImage = require('../utils/cloudinaryUtil');
 
 // Get all updates
 router.get('/', async (req, res) => {
@@ -17,53 +14,82 @@ router.get('/', async (req, res) => {
 });
 
 // Create a new update (admin only)
-router.post('/', authenticate, isAdmin, async (req, res) => {
+router.post('/', async (req, res) => {
   try {
+    let imre = {
+      url: "https://res.cloudinary.com/dzrvn0sdm/image/upload/v1754682063/Gemini_Generated_Image_d9hd3md9hd3md9hd_nxq8ix.png",
+      publicId: null
+    };
+
+    if (req.body.images) {
+      imre = await handleImage('add', { imagePath: req.body.images });
+    }
+
     const { message } = req.body;
-    const update = new Update({ message });
+    const update = new Update({
+      message,
+      images: {
+        url: imre.url,
+        publicId: imre.publicId
+      }
+    });
+
     await update.save();
     res.status(201).json(update);
   } catch (err) {
+    console.error(err);
     res.status(400).json({ error: 'Invalid data' });
   }
 });
 
 // Update an update (admin only)
-router.put('/:id', authenticate, isAdmin, async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
-    const { message } = req.body;
-    const update = await Update.findByIdAndUpdate(
-      req.params.id,
-      { message },
-      { new: true }
-    );
-    if (!update) return res.status(404).json({ error: 'Not found' });
-    res.json(update);
+    const { message, images } = req.body;
+    let updateData = { message };
+
+    const existingUpdate = await Update.findById(req.params.id);
+    if (!existingUpdate) return res.status(404).json({ error: 'Not found' });
+
+    // If new image provided
+    if (images) {
+      // Delete old image if it has a publicId
+      if (existingUpdate.images?.publicId) {
+        await handleImage('delete', { publicId: existingUpdate.images.publicId });
+      }
+
+      // Upload new image
+      const newImage = await handleImage('add', { imagePath: images });
+      updateData.images = {
+        url: newImage.url,
+        publicId: newImage.publicId
+      };
+    }
+
+    const updated = await Update.findByIdAndUpdate(req.params.id, updateData, { new: true });
+    res.json(updated);
   } catch (err) {
+    console.error(err);
     res.status(400).json({ error: 'Invalid data' });
   }
 });
 
 // Delete an update (admin only)
-router.delete('/:id', authenticate, isAdmin, async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
-    const update = await Update.findByIdAndDelete(req.params.id);
-    if (!update) return res.status(404).json({ error: 'Not found' });
+    const up = await Update.findById(req.params.id);
+    if (!up) return res.status(404).json({ error: 'Not found' });
+
+    if (up.images?.publicId) {
+      await handleImage('delete', { publicId: up.images.publicId });
+    }
+
+    await Update.findByIdAndDelete(req.params.id);
     res.json({ message: 'Deleted' });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: 'Server error' });
   }
 });
 
-// Add a sample update if none exist (for demonstration)
-router.get('/seed', async (req, res) => {
-  const count = await Update.countDocuments();
-  if (count === 0) {
-    const update = new Update({ message: 'selected candidate are\nArvind\nNiru\nAbhi' });
-    await update.save();
-    return res.json({ message: 'Seeded sample update.' });
-  }
-  res.json({ message: 'Updates already exist.' });
-});
-
-module.exports = router; 
+module.exports = router;

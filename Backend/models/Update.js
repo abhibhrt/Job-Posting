@@ -5,6 +5,10 @@ const updateSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  images: {
+    url: String,
+    publicId: String
+  }
 }, {
   timestamps: true,
 });

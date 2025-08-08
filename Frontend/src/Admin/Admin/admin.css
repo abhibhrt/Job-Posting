@@ -403,8 +403,20 @@
     justify-content: center;
   }
 
-  .admin-panel__stats-grid {
-    grid-template-columns: 1fr;
+  .admin-panel__stats-grid{
+    gap: .1em;
+  }
+
+  .admin-panel__stat-card{
+    display: flex;
+    width: min-content;
+    padding: 1% 2%;
+    flex-direction: row;
+    width: 96%;
+    justify-content: space-between;
+  }
+  .admin-panel__stat-card *{
+    scale: .7;
   }
 }
 
@@ -422,3 +434,4 @@
     margin-bottom: 0.5rem;
   }
 }
+

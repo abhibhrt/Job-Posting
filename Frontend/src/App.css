@@ -68,17 +68,6 @@ body {
   margin-bottom: 2rem;
 }
 
-/* .global-heading::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 60px;
-  height: 3px;
-  background: var(--color-primary);
-  border-radius: 3px;
-} */
-
 .secondglobal-heading {
   font-size: 1.5rem;
   font-weight: 600;
@@ -92,7 +81,25 @@ body {
 
 .whatsapp-icon{
   position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   z-index: 999;
-  bottom: 2rem;
-  right: 2rem;
+  animation: pulsewa 2s infinite;
+  transition: all 0.3s ease;
+}
+
+.whatsapp-icon:hover{
+  animation: none;
+}
+
+@keyframes pulsewa {
+  50%{
+    scale: .8;
+  }
 }

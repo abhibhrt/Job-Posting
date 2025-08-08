@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import './Services.css';
+ import { useNavigate } from 'react-router-dom';
 
 const Services = () => {
   const [activeFaq, setActiveFaq] = useState(null);
+  const navigate = useNavigate();
 
   const toggleFaq = (index) => {
     setActiveFaq(activeFaq === index ? null : index);
@@ -40,7 +42,7 @@ const Services = () => {
           </div>
         </div>
 
-        <button className="services-cta">
+        <button className="services-cta" onClick={() => navigate("/contact")}>
           Contact Us
         </button>
 

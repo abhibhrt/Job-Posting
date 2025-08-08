@@ -19,7 +19,7 @@ const Navbar = lazy(() => import('./components/Navbar/Navbar'));
 const Footer = lazy(() => import('./components/Footer/Footer'));
 const Home = lazy(() => import('./Pages/Home/Home'));
 const JobList = lazy(() => import('./Pages/Jobs/JobList'));
-const Admin = lazy(() => import('./Admin/Admin'));
+const Admin = lazy(() => import('./Admin/Admin/Admin'));
 const Updates = lazy(() => import('./Pages/Updates/Updates'));
 
 function ScrollToTop() {
@@ -50,7 +50,7 @@ function App() {
     <GlobalDataProvider>
       <Router>
         <div className="App">
-          <Suspense fallback={<div className="loading">Loading...</div>}>
+          <Suspense fallback={<div className="loading"></div>}>
             <Navbar />
             <ScrollToTop />
             <Routes>
@@ -67,7 +67,7 @@ function App() {
           </Suspense>
           <div className="whatsapp-icon">
             <a href="https://whatsapp.com/channel/0029Vb5wEZPFCCodX8MMlz0U" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
-              <FaWhatsapp size={42} color="#25D366" />
+              <FaWhatsapp size={55} color="#00ff33ff" />
             </a>
           </div>
         </div>

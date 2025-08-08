@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useGlobalData } from '../GlobalDataContext';
-import { useAlert } from '../components/Alert/Alert';
+import { useGlobalData } from '../../GlobalDataContext';
+import { useAlert } from '../../components/Alert/Alert';
 import './managereviews.css';
 
 const ManageReviews = () => {

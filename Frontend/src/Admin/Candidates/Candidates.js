@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useGlobalData } from '../GlobalDataContext';
-import { useAlert } from '../components/Alert/Alert';
+import { useGlobalData } from '../../GlobalDataContext';
+import { useAlert } from '../../components/Alert/Alert';
 import './candidates.css';
 
 const Candidates = () => {

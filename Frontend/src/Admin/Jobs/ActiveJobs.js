@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import { useGlobalData } from '../GlobalDataContext';
-import { useAlert } from '../components/Alert/Alert';
+import { useGlobalData } from '../../GlobalDataContext';
+import { useAlert } from '../../components/Alert/Alert';
 import './activejobs.css';
-import JobForm from '../components/Forms/JobForm';
+import JobForm from '../../components/Forms/JobForm';
 
 const ActiveJobs = () => {
   const { jobs, loading, refetch, candidates } = useGlobalData();
