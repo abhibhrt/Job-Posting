@@ -40,7 +40,7 @@ const fetchWithTimeout = async (resource, options = {}, timeout = 15000, retries
 };
 
 export const GlobalDataProvider = ({ children }) => {
-  const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+  const apiUrl = process.env.REACT_APP_API_URL;
   const { showAlert, AlertComponent } = useAlert();
 
   const [jobs, setJobs] = useState([]);
