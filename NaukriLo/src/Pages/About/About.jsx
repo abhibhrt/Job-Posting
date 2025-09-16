@@ -58,7 +58,7 @@ const About = () => {
       <h2 className="global-heading">About Us</h2>
       <div className="about-container">
         <div className="about-image">
-          <img src="about.png" alt="About-Image" />
+          <img src="happypic.png" alt="About-Image" />
         </div>
         <div className="about-content">
           <h2 className="about-title">Our Mission</h2>
