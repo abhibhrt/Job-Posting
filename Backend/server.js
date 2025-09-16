@@ -11,7 +11,7 @@ app.use(cors());
 app.use(express.json({ limit: '1mb' }));
 // Routes
 app.get('/', (req, res) => {
-  res.send("Welcome to HR-ZONE");
+  res.send("Welcome to NaukriLo");
 });
 
 app.use('/auth', require('./routes/auth'));
@@ -24,8 +24,8 @@ app.use('/subscribe', require('./routes/subscribe'));
 (async () => {
   const adminCount = await Admin.countDocuments();
   if (adminCount === 0) {
-    await Admin.create({ username: 'hrzone', password: 'Admin@123' });
-    console.log('Default admin created: hrzone / Admin@123');
+    await Admin.create({ username: 'abhibhrt', password: 'Admin@123' });
+    console.log('Default admin created: abhibhrt / Admin@123');
   }
 })();
 

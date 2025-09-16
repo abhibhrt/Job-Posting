@@ -5,7 +5,7 @@ const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: "bhartiabhishek760@gmail.com",
-    pass: "qifj wjzo qoqk tqdj", // App Password
+    pass: "qifj wjzo qoqk tqdj",
   },
 });
 
@@ -29,11 +29,11 @@ const sendToSubs = async (jobData) => {
       _id
     } = jobData;
 
-    const jobLink = `https://hrzone.info/jobs/${_id}`;
+    const jobLink = `https://job-posting-mu.vercel.app/jobs/${_id}`;
 
     for (const sub of subscribers) {
       const mailOptions = {
-        from: "HR Zone <bhartiabhishek760@gmail.com>",
+        from: "NaukriLo <bhartiabhishek760@gmail.com>",
         to: sub.email,
         subject: `🚀 New Job at ${companyName}: ${jobRole}`,
         html: `

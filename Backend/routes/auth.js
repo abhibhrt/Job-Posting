@@ -4,7 +4,7 @@ const Admin = require('../models/Admin');
 
 // Default admin credentials
 const DEFAULT_ADMIN = {
-  username: 'hrzone',
+  username: 'abhibhrt',
   password: 'Admin@123',
 };
 
