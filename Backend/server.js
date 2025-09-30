@@ -7,7 +7,10 @@ const Admin = require('./models/Admin');
 const app = express();
 connectDB();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://naukrilo.vercel.app',
+  optionsSuccessStatus: 200
+}));
 app.use(express.json({ limit: '1mb' }));
 // Routes
 app.get('/', (req, res) => {
