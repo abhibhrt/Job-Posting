@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className="footer-section">
             <div className="footer-container">
                 <div className="footer-brand">
-                    <h2>HR Zone</h2>
+                    <h2>NaukriLo</h2>
                     <p>Your trusted partner for finding meaningful career opportunities that match your passion and potential.</p>
                 </div>
 
@@ -24,8 +24,8 @@ const Footer = () => {
 
                 <div className="footer-contact">
                     <h4>Contact Us</h4>
-                    <p><FaEnvelope /> hrzone2203@gmail.com</p>
-                    <p><FaPhone /> +91 9893468837</p>
+                    <p><FaEnvelope />contact@naukrilo.in</p>
+                    <p><FaPhone /> +91 1234 567 890</p>
                     <div className="footer-socials">
                         <a href="/"><FaFacebook /></a>
                         <a href="/"><FaInstagram /></a>
@@ -35,7 +35,7 @@ const Footer = () => {
             </div>
 
             <div className="footer-bottom">
-                <p>&copy; {new Date().getFullYear()} HR Zone. All rights reserved.</p>
+                <p>&copy; {new Date().getFullYear()} @naukrilo All rights reserved.</p>
             </div>
         </footer>
     );
